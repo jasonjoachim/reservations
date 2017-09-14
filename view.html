@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <title>Restaurant Reservation</title>
+
+  <!-- Latest compiled and minified CSS & JS -->
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/css/bootstrap.min.css" integrity="sha384-rwoIResjU2yc3z8GV/NPeZWAv56rSmLldC3R/AZzGRnGxQQKnKkoFVhFQhNUwEyJ" crossorigin="anonymous">
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/js/bootstrap.min.js" integrity="sha384-vBWWzlZJ8ea9aCX4pEW3rVHjgjt7zpkNpZk+02D9phzyeVkE+jo0ieGizqPLForn" crossorigin="anonymous"></script>
+  <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossorigin="anonymous">
+
+  <script src="https://code.jquery.com/jquery.js"></script>
+</head>
+
+<body>
+  <div class="container">
+    <div class="jumbotron">
+      <h1 class="text-center">Restaurant Reservation</h1>
+      <hr>
+      <h3 class="text-center">View Reservations and Waiting List</h3>
+      <br>
+      <div class="text-center">
+        <a href="/"><button type="button" class="btn btn-primary btn-lg" id="button_home"><i class="fa fa-home" aria-hidden="true"></i> Home</button></a>
+        <a href="/make"><button type="button" class="btn btn-success btn-lg" id="button_make"><i class="fa fa-cutlery" aria-hidden="true"></i> Make a Reservation</button></a>
+      </div>
+    </div>
+
+    <div class="card">
+      <h3 class="card-header">Reservations</h3>
+      <table class="table table-striped">
+        <thead>
+          <tr>
+            <th>#</th>
+            <th>Name</th>
+            <th>Phone Number</th>
+            <th>Email</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <th scope="row">1</th>
+            <td>Mark</td>
+            <td>234-6789</td>
+            <td>mark@mark.com</td>
+          </tr>
+          <tr>
+            <th scope="row">2</th>
+            <td>Jacob</td>
+            <td>345-6789</td>
+            <td>jacob@fat.com</td>
+          </tr>
+          <tr>
+            <th scope="row">3</th>
+            <td>Larry</td>
+            <td>678-9876</td>
+            <td>larry@twitter.com</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="card">
+      <h3 class="card-header">Wait List</h3>
+
+      <table class="table table-striped">
+        <thead>
+          <tr>
+            <th>#</th>
+            <th>Name</th>
+            <th>Phone Number</th>
+            <th>Email</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <th scope="row">1</th>
+            <td>Mark</td>
+            <td>234-6789</td>
+            <td>mark@mark.com</td>
+          </tr>
+          <tr>
+            <th scope="row">2</th>
+            <td>Jacob</td>
+            <td>345-6789</td>
+            <td>jacob@fat.com</td>
+          </tr>
+          <tr>
+            <th scope="row">3</th>
+            <td>Larry</td>
+            <td>678-9876</td>
+            <td>larry@twitter.com</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <footer>
+      <a href="/api/view">API Reservation</a> | <a href="/api/waitlist">API Waitlist</a>
+    </footer>
+  </div>
+
+  <script type="text/javascript">
+    $("#button_home").on("click", function() {
+      $.get("/", function() {});
+    });
+
+    $("#button_view").on("click", function() {
+      $.get("/view/", function() {});
+    });
+  </script>
+</body>
+
+</html>
