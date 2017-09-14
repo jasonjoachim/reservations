@@ -18,7 +18,7 @@
             <div class="jumbotron">
                 <h1 class="text-center">Restaurant Reservation</h1>
                 <hr>
-                <h3 class="text-center">View Reservations and Waiting List</h3>
+                <h3 class="text-center">View Reservations and Waitlist</h3>
                 <br>
                 <div class="text-center">
                     <a href="/"><button type="button" class="btn btn-primary btn-lg" id="button_home"><i class="fa fa-home" aria-hidden="true"></i> Home</button></a>
@@ -33,7 +33,7 @@
                         <tr>
                             <th>#</th>
                             <th>Name</th>
-                            <th>Phone Number</th>
+                            <th>Phone</th>
                             <th>Email</th>
                         </tr>
                     </thead>
@@ -59,6 +59,7 @@
                     </tbody>
                 </table>
             </div>
+            <br>
 
             <div class="card">
                 <h3 class="card-header">Waitlist</h3>
@@ -68,7 +69,7 @@
                         <tr>
                             <th>#</th>
                             <th>Name</th>
-                            <th>Phone Number</th>
+                            <th>Phone</th>
                             <th>Email</th>
                         </tr>
                     </thead>
@@ -94,6 +95,7 @@
                     </tbody>
                 </table>
             </div>
+            <br>
 
             <footer>
                 <a href="/api/view">API Reservation</a> | <a href="/api/waitlist">API Waitlist</a>
@@ -101,9 +103,8 @@
         </div>
 
         <!-- For Bootstrap 4 -->
-        <script src="https://code.jquery.com/jquery-3.1.1.slim.min.js" integrity="sha384-A7FZj7v+d/sdmMqp/nOQwliLvUsJfDHW+k9Omg/a/EheAdgtzNs3hpfag6Ed950n" crossorigin="anonymous"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/tether/1.4.0/js/tether.min.js" integrity="sha384-DztdAPBWPRXSA/3eYEEUWrWCy7G5KFbe8fFjk5JAIxUYHKkDx6Qin1DkWx51bBrb" crossorigin="anonymous"></script>
-<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/js/bootstrap.min.js" integrity="sha384-vBWWzlZJ8ea9aCX4pEW3rVHjgjt7zpkNpZk+02D9phzyeVkE+jo0ieGizqPLForn" crossorigin="anonymous"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/tether/1.4.0/js/tether.min.js" integrity="sha384-DztdAPBWPRXSA/3eYEEUWrWCy7G5KFbe8fFjk5JAIxUYHKkDx6Qin1DkWx51bBrb" crossorigin="anonymous"></script>
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/js/bootstrap.min.js" integrity="sha384-vBWWzlZJ8ea9aCX4pEW3rVHjgjt7zpkNpZk+02D9phzyeVkE+jo0ieGizqPLForn" crossorigin="anonymous"></script>
 
         <script type="text/javascript">
             $("#button_home").on("click", function() {
@@ -111,7 +112,7 @@
             });
 
             $("#button_view").on("click", function() {
-                $.get("/view/", function() {});
+                $.get("/view", function() {});
             });
         </script>
     </body>

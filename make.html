@@ -31,13 +31,24 @@
 
                 <form>
                     <div class="form-group">
-                        <label for="name">Name</label>
-                        <input type="text" class="form-control" id="name">
+                        <label for="name">Name (required)</label>
+                        <input type="text" class="form-control" id="name" required>
                     </div>
 
                     <div class="form-group">
-                        <label for="phone">Phone Number</label>
-                        <input type="text" class="form-control" id="phone">
+                        <label for="partySize">Party size (required)</label>
+                        <select class="form-control" id="partySize">
+                            <option>1</option>
+                            <option selected="selected">2</option>
+                            <option>3</option>
+                            <option>4</option>
+                            <option>5+</option>
+                        </select>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="phone">Phone (required)</label>
+                        <input type="text" class="form-control" id="phone" required>
                     </div>
 
                     <div class="form-group">
@@ -56,9 +67,8 @@
         </div>
 
         <!-- For Bootstrap 4 -->
-        <script src="https://code.jquery.com/jquery-3.1.1.slim.min.js" integrity="sha384-A7FZj7v+d/sdmMqp/nOQwliLvUsJfDHW+k9Omg/a/EheAdgtzNs3hpfag6Ed950n" crossorigin="anonymous"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/tether/1.4.0/js/tether.min.js" integrity="sha384-DztdAPBWPRXSA/3eYEEUWrWCy7G5KFbe8fFjk5JAIxUYHKkDx6Qin1DkWx51bBrb" crossorigin="anonymous"></script>
-<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/js/bootstrap.min.js" integrity="sha384-vBWWzlZJ8ea9aCX4pEW3rVHjgjt7zpkNpZk+02D9phzyeVkE+jo0ieGizqPLForn" crossorigin="anonymous"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/tether/1.4.0/js/tether.min.js" integrity="sha384-DztdAPBWPRXSA/3eYEEUWrWCy7G5KFbe8fFjk5JAIxUYHKkDx6Qin1DkWx51bBrb" crossorigin="anonymous"></script>
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/js/bootstrap.min.js" integrity="sha384-vBWWzlZJ8ea9aCX4pEW3rVHjgjt7zpkNpZk+02D9phzyeVkE+jo0ieGizqPLForn" crossorigin="anonymous"></script>
 
         <script type="text/javascript">
             $("#button_home").on("click", function() {
@@ -73,16 +83,31 @@
                 event.preventDefault();
 
                 const data = {
-                    "name" : $("#name").val().trim(),
-                    "phone": $("#phone").val().trim(),
-                    "email": $("#email").val().trim()
+                    "name"     : $("#name").val().trim(),
+                    "partySize": parseInt($("#partySize").val().trim()),
+                    "phone"    : $("#phone").val().trim(),
+                    "email"    : $("#email").val().trim()
                 };
 
-                console.log(data);
+                var validationPassed = true;
 
-                $.post("/make", data).done(function(data) {
-                    console.log(data);
-                });
+                if (data.name === "") {
+                    $("#name").attr("placeholder", "Please provide your name");
+
+                    validationPassed = false;
+                }
+
+                if (data.phone === "") {
+                    $("#phone").attr("placeholder", "Please provide your number");
+
+                    validationPassed = false;
+                }
+
+                if (validationPassed) {
+                    $.post("/api/new", data).then(data => {
+                        window.location = data.redirectUrl;
+                    });
+                }
             });
         </script>
     </body>

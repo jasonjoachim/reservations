@@ -1,102 +1,80 @@
-// Dependencies
-// =============================================================
-var express = require("express");
+/****************************************************************************
+ ****************************************************************************
+    
+    Initialize
+    
+*****************************************************************************
+*****************************************************************************/
+var express    = require("express");
 var bodyParser = require("body-parser");
-var path = require("path");
+var path       = require("path");
 
-// Sets up the Express App
-// =============================================================
-var app = express();
+var app  = express();
 var PORT = process.env.PORT || 3000;
 
-// Sets up the Express app to handle data parsing
+// Set up Express to handle parsing data
 app.use(bodyParser.json());
-app.use(bodyParser.urlencoded({ extended: true }));
+app.use(bodyParser.urlencoded({"extended": true}));
 app.use(bodyParser.text());
-app.use(bodyParser.json({ type: "application/vnd.api+json" }));
+app.use(bodyParser.json({"type": "application/vnd.api+json"}));
 
-// Table Reservations (DATA)
-// =============================================================
-// The first 5 entries are reservations, the rest are waitlist
-var reservations = [
-  {name: "Darth Maul",
-  phoneNumber: "555-5555",
-  email: "darth@maul.com"},
-  {name: "Death Maul",
-  phoneNumber: "555-5555",
-  email: "darth@maul.com"},
-  {name: "Death Maul",
-  phoneNumber: "555-5555",
-  email: "darth@maul.com"},
-  {name: "Death Maul",
-  phoneNumber: "555-5555",
-  email: "darth@maul.com"},
-  {name: "Death Maul",
-  phoneNumber: "555-5555",
-  email: "darth@maul.com"}
-];
-var waitlist = [];
+// Initialize our array of reservations
+// (the first 5 entries are reservations, the rest are on the waitlist)
+var reservations = [];
 
-// Routes
-// =============================================================
 
-// Basic route that sends the user first to the AJAX Page
+
+/****************************************************************************
+ ****************************************************************************
+    
+    Set up routes
+    
+*****************************************************************************
+*****************************************************************************/
+// HTML routes
 app.get("/", function(req, res) {
-  res.sendFile(path.join(__dirname, "index.html"));
-});
-
-app.get("/view", function(req, res) {
-  res.sendFile(path.join(__dirname, "view.html"));
+    res.sendFile(path.join(__dirname, "index.html"));
 });
 
 app.get("/make", function(req, res) {
     res.sendFile(path.join(__dirname, "make.html"));
-  });
+});
 
-  //This needs to clear the reservations array
-app.get("/api/clear", function(req, res, reservations, waitlist) {
-    //res.sendFile(path.join(__dirname, "make.html"));
+app.get("/view", function(req, res) {
+    res.sendFile(path.join(__dirname, "view.html"));
+});
+
+// API routes
+app.get("/api/clear", function(req, res) {
     reservations = [];
-    waitlist = [];
-  });
+});
 
-// Get all characters
-app.get("/api/view", function(req, res) {
-  res.json(reservations);
-  // for (var i = 0; i < 5; i++) {
-  //     reservations.push(res[i]);
-  //     console.log(reservations);
-  // };
+app.post("/api/new", function(req, res) {
+    // Assume that input validation is done on the client side
+    reservations.push(req.body);
+
+    res.send({"redirectUrl": "/view"});
+});
+
+app.get("/api/reservations", function(req, res) {
+    var numReservations = Math.min(reservations.length, 5);
+
+    res.json(reservations.slice(0, numReservations));
 });
 
 app.get("/api/waitlist", function(req, res) {
-  //   res.json(reservations);
-  // for (var j = 5; j < res.length; j++) {
-  //     waitlist.push(res[j]);
-  // }
-  // console.log(waitlist);
-  if  (reservations.length > 5) {
-    res.json(reservations.slice(5));
-  } else {
-    res.json([]);
-  }
-
- });
-
-// Create New Reservation - takes in JSON input
-app.post("/api/new", function(req, res) {
-  var newReservation = req.body;
-  newReservation.routeName = newReservation.name.replace(/\s+/g, "").toLowerCase();
-
-  console.log(newReservation);
-
-  reservations.push(newReservation);
-
-  res.json(newReservation);
+    res.json((reservations.length > 5) ? reservations.slice(5) : []);
 });
 
-// Starts the server to begin listening
-// =============================================================
+
+
+/****************************************************************************
+ ****************************************************************************
+    
+    Helper functions
+    
+*****************************************************************************
+*****************************************************************************/
 app.listen(PORT, function() {
-  console.log("App listening on PORT " + PORT);
+    console.log("App listening on PORT " + PORT);
 });
