@@ -70,7 +70,7 @@ app.post("/api/new", function(req, res) {
 app.delete("/api/remove", function(req, res) {
     reservations.splice(req.body.id, 1);
 
-    res.send({"redirectUrl": "/view"});
+    res.send({"success": true});
 });
 
 

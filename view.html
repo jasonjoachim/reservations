@@ -120,7 +120,11 @@
                     "url"    : "/api/remove",
                     "type"   : "DELETE",
                     "data"   : {"id": id},
-                    "success": displayTables
+                    "success": function(data) {
+                        if (data.success) {
+                            displayTables();
+                        }
+                    }
                 });
             });
         </script>

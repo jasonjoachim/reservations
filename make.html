@@ -101,7 +101,7 @@
                 }
 
                 if (validationPassed) {
-                    $.post("/api/new", data).then(data => {
+                    $.post("/api/new", data).then(function(data) {
                         window.location = data.redirectUrl;
                     });
                 }
