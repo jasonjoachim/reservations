@@ -78,7 +78,7 @@
             $("#button_submit").click((event) => {
                 event.preventDefault();
 
-                const data = {
+                var data = {
                     "name"     : $("#name").val().trim(),
                     "partySize": parseInt($("#partySize").val().trim()),
                     "phone"    : $("#phone").val().trim(),
