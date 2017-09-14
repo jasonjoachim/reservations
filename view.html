@@ -98,6 +98,7 @@
                     var output = "";
 
                     for (var i = 0; i < data.length; i++) {
+                        // Assume that only 3 reservations are allowed
                         output += `<tr id="${i + 3}">
                                        <th scope="row">${i + 1}</th>
                                        <td>${data[i].name}</td>
