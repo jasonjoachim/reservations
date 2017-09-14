@@ -21,7 +21,7 @@
                 <h3 class="text-center">Make a Reservation</h3>
                 <br>
                 <div class="text-center">
-                    <a href="/make"><button type="button" class="btn btn-primary btn-lg" id="button_home"><i class="fa fa-home" aria-hidden="true"></i> Home</button></a>
+                    <a href="/"><button type="button" class="btn btn-primary btn-lg" id="button_home"><i class="fa fa-home" aria-hidden="true"></i> Home</button></a>
                     <a href="/view"><button type="button" class="btn btn-warning btn-lg" id="button_view"><i class="fa fa-binoculars" aria-hidden="true"></i> View Reservations</button></a>
                 </div>
             </div>
@@ -60,9 +60,14 @@
                 </form>
             </div>
             <br>
-    
+            
             <footer>
-                <a href="/api/view">API Reservation</a> | <a href="/api/waitlist">API Waitlist</a>
+                <div class="float-left">
+                    Copyright © 2017 by John Absher, Jason Joachim, Isaac Lee, and Joshua Summitt
+                </div>
+                <div class="float-right">
+                    <a href="/api/reservations">API reservations</a> | <a href="/api/waitlist">API waitlist</a>
+                </div>
             </footer>
         </div>
 
@@ -71,14 +76,6 @@
         <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/js/bootstrap.min.js" integrity="sha384-vBWWzlZJ8ea9aCX4pEW3rVHjgjt7zpkNpZk+02D9phzyeVkE+jo0ieGizqPLForn" crossorigin="anonymous"></script>
 
         <script type="text/javascript">
-            $("#button_home").on("click", function() {
-                $.get("/", function() {});
-            });
-
-            $("#button_view").on("click", function() {
-                $.get("/view", function() {});
-            });
-
             $("#button_submit").click((event) => {
                 event.preventDefault();
 
@@ -89,6 +86,7 @@
                     "email"    : $("#email").val().trim()
                 };
 
+                // Simple input validation
                 var validationPassed = true;
 
                 if (data.name === "") {

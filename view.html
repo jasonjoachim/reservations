@@ -28,35 +28,17 @@
 
             <div class="card">
                 <h3 class="card-header">Reservations</h3>
-                <table class="table table-striped">
+                <table class="table table-striped" id="reservations">
                     <thead>
                         <tr>
                             <th>#</th>
                             <th>Name</th>
+                            <th>Party Size</th>
                             <th>Phone</th>
                             <th>Email</th>
                         </tr>
                     </thead>
-                    <tbody>
-                        <tr>
-                            <th scope="row">1</th>
-                            <td>Mark</td>
-                            <td>234-6789</td>
-                            <td>mark@mark.com</td>
-                        </tr>
-                        <tr>
-                            <th scope="row">2</th>
-                            <td>Jacob</td>
-                            <td>345-6789</td>
-                            <td>jacob@fat.com</td>
-                        </tr>
-                        <tr>
-                            <th scope="row">3</th>
-                            <td>Larry</td>
-                            <td>678-9876</td>
-                            <td>larry@twitter.com</td>
-                        </tr>
-                    </tbody>
+                    <tbody></tbody>
                 </table>
             </div>
             <br>
@@ -64,41 +46,28 @@
             <div class="card">
                 <h3 class="card-header">Waitlist</h3>
 
-                <table class="table table-striped">
+                <table class="table table-striped" id="waitlist">
                     <thead>
                         <tr>
                             <th>#</th>
                             <th>Name</th>
+                            <th>Party Size</th>
                             <th>Phone</th>
                             <th>Email</th>
                         </tr>
                     </thead>
-                    <tbody>
-                        <tr>
-                            <th scope="row">1</th>
-                            <td>Mark</td>
-                            <td>234-6789</td>
-                            <td>mark@mark.com</td>
-                        </tr>
-                        <tr>
-                            <th scope="row">2</th>
-                            <td>Jacob</td>
-                            <td>345-6789</td>
-                            <td>jacob@fat.com</td>
-                        </tr>
-                        <tr>
-                            <th scope="row">3</th>
-                            <td>Larry</td>
-                            <td>678-9876</td>
-                            <td>larry@twitter.com</td>
-                        </tr>
-                    </tbody>
+                    <tbody></tbody>
                 </table>
             </div>
             <br>
-
+            
             <footer>
-                <a href="/api/view">API Reservation</a> | <a href="/api/waitlist">API Waitlist</a>
+                <div class="float-left">
+                    Copyright © 2017 by John Absher, Jason Joachim, Isaac Lee, and Joshua Summitt
+                </div>
+                <div class="float-right">
+                    <a href="/api/reservations">API reservations</a> | <a href="/api/waitlist">API waitlist</a>
+                </div>
             </footer>
         </div>
 
@@ -107,12 +76,53 @@
         <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/js/bootstrap.min.js" integrity="sha384-vBWWzlZJ8ea9aCX4pEW3rVHjgjt7zpkNpZk+02D9phzyeVkE+jo0ieGizqPLForn" crossorigin="anonymous"></script>
 
         <script type="text/javascript">
-            $("#button_home").on("click", function() {
-                $.get("/", function() {});
-            });
+            function displayTables() {
+                // Display reservations
+                $.get("/api/reservations", function(data) {
+                    var output = "";
 
-            $("#button_view").on("click", function() {
-                $.get("/view", function() {});
+                    for (var i = 0; i < data.length; i++) {
+                        output += `<tr id="${i}">
+                                       <th scope="row">${i + 1}</th>
+                                       <td>${data[i].name}</td>
+                                       <td>${data[i].partySize}</td>
+                                       <td>${data[i].phone}</td>
+                                       <td>${data[i].email}</td>
+                                   </tr>`;
+                    }
+
+                    $("#reservations > tbody").html(output);
+                });
+
+                // Display waitlist
+                $.get("/api/waitlist", function(data) {
+                    var output = "";
+
+                    for (var i = 0; i < data.length; i++) {
+                        output += `<tr id="${i + 3}">
+                                       <th scope="row">${i + 1}</th>
+                                       <td>${data[i].name}</td>
+                                       <td>${data[i].partySize}</td>
+                                       <td>${data[i].phone}</td>
+                                       <td>${data[i].email}</td>
+                                   </tr>`;
+                    }
+
+                    $("#waitlist > tbody").html(output);
+                });
+            }
+
+            $(document).ready(displayTables);
+
+            $("body").on("click", "tbody tr", function() {
+                var id = parseInt($(this).attr("id"));
+
+                $.ajax({
+                    "url"    : "/api/remove",
+                    "type"   : "DELETE",
+                    "data"   : {"id": id},
+                    "success": displayTables
+                });
             });
         </script>
     </body>

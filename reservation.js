@@ -16,11 +16,10 @@ var PORT = process.env.PORT || 3000;
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({"extended": true}));
 app.use(bodyParser.text());
-app.use(bodyParser.json({"type": "application/vnd.api+json"}));
 
 // Initialize our array of reservations
-// (the first 5 entries are reservations, the rest are on the waitlist)
-var reservations = [];
+// (the first 3 entries are reservations, the rest are on the waitlist)
+var reservations = [], numReservationsAllowed = 3;
 
 
 
@@ -45,8 +44,20 @@ app.get("/view", function(req, res) {
 });
 
 // API routes
-app.get("/api/clear", function(req, res) {
-    reservations = [];
+app.get("/api/reservations", function(req, res) {
+    var numReservations = Math.min(reservations.length, numReservationsAllowed);
+
+    res.json(reservations.slice(0, numReservations));
+});
+
+app.get("/api/waitlist", function(req, res) {
+    if (reservations.length > numReservationsAllowed) {
+        res.json(reservations.slice(numReservationsAllowed));
+
+    } else {
+        res.json([]);
+
+    }
 });
 
 app.post("/api/new", function(req, res) {
@@ -56,14 +67,10 @@ app.post("/api/new", function(req, res) {
     res.send({"redirectUrl": "/view"});
 });
 
-app.get("/api/reservations", function(req, res) {
-    var numReservations = Math.min(reservations.length, 5);
+app.delete("/api/remove", function(req, res) {
+    reservations.splice(req.body.id, 1);
 
-    res.json(reservations.slice(0, numReservations));
-});
-
-app.get("/api/waitlist", function(req, res) {
-    res.json((reservations.length > 5) ? reservations.slice(5) : []);
+    res.send({"redirectUrl": "/view"});
 });
 
 
