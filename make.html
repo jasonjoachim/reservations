@@ -18,13 +18,41 @@
             <div class="jumbotron">
                 <h1 class="text-center">Restaurant Reservation</h1>
                 <hr>
-                <h3 class="text-center">Welcome!</h3>
+                <h3 class="text-center">Make a Reservation</h3>
                 <br>
                 <div class="text-center">
-                    <a href="/make"><button type="button" class="btn btn-success btn-lg" id="button_make"><i class="fa fa-cutlery" aria-hidden="true"></i> Make a Reservation</button></a>
+                    <a href="/make"><button type="button" class="btn btn-primary btn-lg" id="button_home"><i class="fa fa-home" aria-hidden="true"></i> Home</button></a>
                     <a href="/view"><button type="button" class="btn btn-warning btn-lg" id="button_view"><i class="fa fa-binoculars" aria-hidden="true"></i> View Reservations</button></a>
                 </div>
             </div>
+
+            <div class="card">
+                <h3 class="card-header">Reserve a table</h3>
+
+                <form>
+                    <div class="form-group">
+                        <label for="name">Name</label>
+                        <input type="text" class="form-control" id="name">
+                    </div>
+
+                    <div class="form-group">
+                        <label for="phone">Phone Number</label>
+                        <input type="text" class="form-control" id="phone">
+                    </div>
+
+                    <div class="form-group">
+                        <label for="name">Email</label>
+                        <input type="text" class="form-control" id="email">
+                    </div>
+
+                    <button type="submit" class="btn btn-primary btn-lg float-right" id="button_submit">Submit</button>
+                </form>
+            </div>
+            <br>
+    
+            <footer>
+                <a href="/api/view">API Reservation</a> | <a href="/api/waitlist">API Waitlist</a>
+            </footer>
         </div>
 
         <!-- For Bootstrap 4 -->
@@ -33,12 +61,28 @@
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/js/bootstrap.min.js" integrity="sha384-vBWWzlZJ8ea9aCX4pEW3rVHjgjt7zpkNpZk+02D9phzyeVkE+jo0ieGizqPLForn" crossorigin="anonymous"></script>
 
         <script type="text/javascript">
-            $("#button_make").on("click", function() {
-                $.get("/make/", function() {});
+            $("#button_home").on("click", function() {
+                $.get("/", function() {});
             });
 
             $("#button_view").on("click", function() {
-                $.get("/view/", function() {});
+                $.get("/view", function() {});
+            });
+
+            $("#button_submit").click((event) => {
+                event.preventDefault();
+
+                const data = {
+                    "name" : $("#name").val().trim(),
+                    "phone": $("#phone").val().trim(),
+                    "email": $("#email").val().trim()
+                };
+
+                console.log(data);
+
+                $.post("/make", data).done(function(data) {
+                    console.log(data);
+                });
             });
         </script>
     </body>
