@@ -18,7 +18,23 @@ app.use(bodyParser.json({ type: "application/vnd.api+json" }));
 // Table Reservations (DATA)
 // =============================================================
 // The first 5 entries are reservations, the rest are waitlist
-var reservations = [];
+var reservations = [
+  {name: "Darth Maul",
+  phoneNumber: "555-5555",
+  email: "darth@maul.com"},
+  {name: "Death Maul",
+  phoneNumber: "555-5555",
+  email: "darth@maul.com"},
+  {name: "Death Maul",
+  phoneNumber: "555-5555",
+  email: "darth@maul.com"},
+  {name: "Death Maul",
+  phoneNumber: "555-5555",
+  email: "darth@maul.com"},
+  {name: "Death Maul",
+  phoneNumber: "555-5555",
+  email: "darth@maul.com"}
+];
 var waitlist = [];
 
 // Routes
@@ -38,53 +54,45 @@ app.get("/make", function(req, res) {
   });
 
   //This needs to clear the reservations array
-app.get("/clear", function(req, res) {
-    res.sendFile(path.join(__dirname, "make.html"));
+app.get("/api/clear", function(req, res, reservations, waitlist) {
+    //res.sendFile(path.join(__dirname, "make.html"));
+    reservations = [];
+    waitlist = [];
   });
 
 // Get all characters
 app.get("/api/view", function(req, res) {
   res.json(reservations);
-  for (var i = 0; i < 5; i++) {
-      reservations.push(res[i]);
-  };
+  // for (var i = 0; i < 5; i++) {
+  //     reservations.push(res[i]);
+  //     console.log(reservations);
+  // };
 });
 
 app.get("/api/waitlist", function(req, res) {
-    res.json(waitlist);
-  for (var j = 5; j < res.length; j++) {
-      waitlist.push(res[j]);
+  //   res.json(reservations);
+  // for (var j = 5; j < res.length; j++) {
+  //     waitlist.push(res[j]);
+  // }
+  // console.log(waitlist);
+  if  (reservations.length > 5) {
+    res.json(reservations.slice(5));
+  } else {
+    res.json([]);
   }
-  });
 
-// Search for Specific Character (or all characters) - provides JSON
+ });
 
-// app.get("/api/reservations", function(req, res) {
-//   var chosen = req.params.characters;
-
-//   if (chosen) {
-//     console.log(chosen);
-
-//     for (var i = 0; i < characters.length; i++) {
-//       if (chosen === characters[i].routeName) {
-//         return res.json(characters[i]);
-//       }
-//     }
-//     return res.json(false);
-//   }
-//   return res.json(characters);
-// });
-
-// Create New Characters - takes in JSON input
+// Create New Reservation - takes in JSON input
 app.post("/api/new", function(req, res) {
-  var newcharacter = req.body;
-  newcharacter.routeName = newcharacter.name.replace(/\s+/g, "").toLowerCase();
+  var newReservation = req.body;
+  newReservation.routeName = newReservation.name.replace(/\s+/g, "").toLowerCase();
 
-  console.log(newcharacter);
+  console.log(newReservation);
 
-  characters.push(newcharacter);
+  reservations.push(newReservation);
 
-  res.json(newcharacter);
+  res.json(newReservation);
 });
 
 // Starts the server to begin listening
