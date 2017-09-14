@@ -16,5 +16,9 @@
   "bugs": {
     "url": "https://github.com/jasonjoachim/reservations/issues"
   },
-  "homepage": "https://github.com/jasonjoachim/reservations#readme"
+  "homepage": "https://github.com/jasonjoachim/reservations#readme",
+  "dependencies": {
+    "body-parser": "^1.18.1",
+    "express": "^4.15.4"
+  }
 }
