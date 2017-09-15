@@ -61,10 +61,16 @@ app.get("/api/waitlist", function(req, res) {
 });
 
 app.post("/api/new", function(req, res) {
+    var openTable = (reservations.length < numReservationsAllowed);
+
     // Assume that input validation is done on the client side
     reservations.push(req.body);
 
-    res.send({"redirectUrl": "/view"});
+    res.send({
+        "name"       : req.body.name, 
+        "openTable"  : openTable,
+        "redirectUrl": "/view"
+    });
 });
 
 app.delete("/api/remove", function(req, res) {
