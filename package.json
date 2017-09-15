@@ -2,7 +2,7 @@
   "name": "reservations",
   "version": "1.0.0",
   "description": "Restaurant Reservation App",
-  "main": "index.js",
+  "main": "reservation.js",
   "scripts": {
     "start": " node reservation.js",
     "test": "echo \"Error: no test specified\" && exit 1"

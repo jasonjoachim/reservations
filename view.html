@@ -3,115 +3,138 @@
     <head>
         <meta charset="UTF-8">
         <title>Restaurant Reservation</title>
-            
-            <!-- jQuery -->
-            <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+        
+        <!-- jQuery -->
+        <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 
-            <!-- Bootstrap 4 -->
-            <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/css/bootstrap.min.css" integrity="sha384-rwoIResjU2yc3z8GV/NPeZWAv56rSmLldC3R/AZzGRnGxQQKnKkoFVhFQhNUwEyJ" crossorigin="anonymous">
+        <!-- Bootstrap 4 -->
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/css/bootstrap.min.css" integrity="sha384-rwoIResjU2yc3z8GV/NPeZWAv56rSmLldC3R/AZzGRnGxQQKnKkoFVhFQhNUwEyJ" crossorigin="anonymous">
 
-            <!-- Font Awesome -->
-            <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossorigin="anonymous">
+        <!-- Font Awesome -->
+        <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossorigin="anonymous">
     </head>
     <body>
         <div class="container">
-            <div class="jumbotron">
-                <h1 class="text-center">Restaurant Reservation</h1>
+            <div class="jumbotron py-5">
+                <h1 class="display-4 text-center">Restaurant Reservation</h1>
                 <hr>
-                <h3 class="text-center">View Reservations and Waiting List</h3>
-                <br>
-                <div class="text-center">
-                    <a href="/"><button type="button" class="btn btn-primary btn-lg" id="button_home"><i class="fa fa-home" aria-hidden="true"></i> Home</button></a>
-                    <a href="/make"><button type="button" class="btn btn-success btn-lg" id="button_make"><i class="fa fa-cutlery" aria-hidden="true"></i> Make a Reservation</button></a>
+                <h2 class="text-center">View Reservations</h2>
+                
+                <div class="text-center mt-5">
+                    <a href="/"><button type="button" class="btn btn-primary btn-lg mx-1" id="button_home"><i class="fa fa-home mr-3" aria-hidden="true"></i>Home</button></a>
+                    <a href="/make"><button type="button" class="btn btn-success btn-lg mx-1" id="button_make"><i class="fa fa-cutlery mr-3" aria-hidden="true"></i>Make a Reservation</button></a>
                 </div>
             </div>
 
-            <div class="card">
+            <div class="card my-5">
                 <h3 class="card-header">Reservations</h3>
-                <table class="table table-striped">
-                    <thead>
-                        <tr>
-                            <th>#</th>
-                            <th>Name</th>
-                            <th>Phone Number</th>
-                            <th>Email</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <tr>
-                            <th scope="row">1</th>
-                            <td>Mark</td>
-                            <td>234-6789</td>
-                            <td>mark@mark.com</td>
-                        </tr>
-                        <tr>
-                            <th scope="row">2</th>
-                            <td>Jacob</td>
-                            <td>345-6789</td>
-                            <td>jacob@fat.com</td>
-                        </tr>
-                        <tr>
-                            <th scope="row">3</th>
-                            <td>Larry</td>
-                            <td>678-9876</td>
-                            <td>larry@twitter.com</td>
-                        </tr>
-                    </tbody>
-                </table>
+                
+                <div class="p-4">
+                    <p class="mb-4">Directions: Click on a row to remove the party.</p>
+
+                    <table class="table table-hover" id="reservations">
+                        <thead>
+                            <tr>
+                                <th>#</th>
+                                <th>Name</th>
+                                <th>Party Size</th>
+                                <th>Phone</th>
+                                <th>Email</th>
+                            </tr>
+                        </thead>
+                        <tbody></tbody>
+                    </table>
+                </div>
             </div>
 
-            <div class="card">
+            <div class="card my-5">
                 <h3 class="card-header">Waitlist</h3>
+                
+                <div class="p-4">
+                    <p class="mb-4">Directions: Click on a row to remove the party.</p>
 
-                <table class="table table-striped">
-                    <thead>
-                        <tr>
-                            <th>#</th>
-                            <th>Name</th>
-                            <th>Phone Number</th>
-                            <th>Email</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <tr>
-                            <th scope="row">1</th>
-                            <td>Mark</td>
-                            <td>234-6789</td>
-                            <td>mark@mark.com</td>
-                        </tr>
-                        <tr>
-                            <th scope="row">2</th>
-                            <td>Jacob</td>
-                            <td>345-6789</td>
-                            <td>jacob@fat.com</td>
-                        </tr>
-                        <tr>
-                            <th scope="row">3</th>
-                            <td>Larry</td>
-                            <td>678-9876</td>
-                            <td>larry@twitter.com</td>
-                        </tr>
-                    </tbody>
-                </table>
+                    <table class="table table-hover" id="waitlist">
+                        <thead>
+                            <tr>
+                                <th>#</th>
+                                <th>Name</th>
+                                <th>Party Size</th>
+                                <th>Phone</th>
+                                <th>Email</th>
+                            </tr>
+                        </thead>
+                        <tbody></tbody>
+                    </table>
+                </div>
             </div>
-
+            
             <footer>
-                <a href="/api/view">API Reservation</a> | <a href="/api/waitlist">API Waitlist</a>
+                <div class="float-left">
+                    Copyright © 2017 by John Absher, Jason Joachim, Isaac Lee, and Joshua Summitt
+                </div>
+                <div class="float-right">
+                    <a href="/api/reservations">API reservations</a> | <a href="/api/waitlist">API waitlist</a>
+                </div>
             </footer>
         </div>
 
         <!-- For Bootstrap 4 -->
-        <script src="https://code.jquery.com/jquery-3.1.1.slim.min.js" integrity="sha384-A7FZj7v+d/sdmMqp/nOQwliLvUsJfDHW+k9Omg/a/EheAdgtzNs3hpfag6Ed950n" crossorigin="anonymous"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/tether/1.4.0/js/tether.min.js" integrity="sha384-DztdAPBWPRXSA/3eYEEUWrWCy7G5KFbe8fFjk5JAIxUYHKkDx6Qin1DkWx51bBrb" crossorigin="anonymous"></script>
-<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/js/bootstrap.min.js" integrity="sha384-vBWWzlZJ8ea9aCX4pEW3rVHjgjt7zpkNpZk+02D9phzyeVkE+jo0ieGizqPLForn" crossorigin="anonymous"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/tether/1.4.0/js/tether.min.js" integrity="sha384-DztdAPBWPRXSA/3eYEEUWrWCy7G5KFbe8fFjk5JAIxUYHKkDx6Qin1DkWx51bBrb" crossorigin="anonymous"></script>
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/js/bootstrap.min.js" integrity="sha384-vBWWzlZJ8ea9aCX4pEW3rVHjgjt7zpkNpZk+02D9phzyeVkE+jo0ieGizqPLForn" crossorigin="anonymous"></script>
 
         <script type="text/javascript">
-            $("#button_home").on("click", function() {
-                $.get("/", function() {});
-            });
+            function displayTables() {
+                // Display reservations
+                $.get("/api/reservations", function(data) {
+                    var output = "";
 
-            $("#button_view").on("click", function() {
-                $.get("/view/", function() {});
+                    for (var i = 0; i < data.length; i++) {
+                        output += `<tr id="${i}">
+                                       <th scope="row">${i + 1}</th>
+                                       <td>${data[i].name}</td>
+                                       <td>${data[i].partySize}</td>
+                                       <td>${data[i].phone}</td>
+                                       <td>${data[i].email}</td>
+                                   </tr>`;
+                    }
+
+                    $("#reservations > tbody").html(output);
+                });
+
+                // Display waitlist
+                $.get("/api/waitlist", function(data) {
+                    var output = "";
+
+                    for (var i = 0; i < data.length; i++) {
+                        // Assume that only 3 reservations are allowed
+                        output += `<tr id="${i + 3}">
+                                       <th scope="row">${i + 1}</th>
+                                       <td>${data[i].name}</td>
+                                       <td>${data[i].partySize}</td>
+                                       <td>${data[i].phone}</td>
+                                       <td>${data[i].email}</td>
+                                   </tr>`;
+                    }
+
+                    $("#waitlist > tbody").html(output);
+                });
+            }
+
+            $(document).ready(displayTables);
+
+            $("body").on("click", "tbody tr", function() {
+                var id = parseInt($(this).attr("id"));
+
+                $.ajax({
+                    "url"    : "/api/remove",
+                    "type"   : "DELETE",
+                    "data"   : {"id": id},
+                    "success": function(data) {
+                        if (data.success) {
+                            displayTables();
+                        }
+                    }
+                });
             });
         </script>
     </body>

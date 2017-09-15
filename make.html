@@ -15,74 +15,104 @@
     </head>
     <body>
         <div class="container">
-            <div class="jumbotron">
-                <h1 class="text-center">Restaurant Reservation</h1>
+            <div class="jumbotron py-5">
+                <h1 class="display-4 text-center">Restaurant Reservation</h1>
                 <hr>
-                <h3 class="text-center">Make a Reservation</h3>
-                <br>
-                <div class="text-center">
-                    <a href="/make"><button type="button" class="btn btn-primary btn-lg" id="button_home"><i class="fa fa-home" aria-hidden="true"></i> Home</button></a>
-                    <a href="/view"><button type="button" class="btn btn-warning btn-lg" id="button_view"><i class="fa fa-binoculars" aria-hidden="true"></i> View Reservations</button></a>
+                <h2 class="text-center">Make a Reservation</h2>
+                
+                <div class="text-center mt-5">
+                    <a href="/"><button type="button" class="btn btn-primary btn-lg mx-1" id="button_home"><i class="fa fa-home mr-3" aria-hidden="true"></i>Home</button></a>
+                    <a href="/view"><button type="button" class="btn btn-warning btn-lg mx-1" id="button_view"><i class="fa fa-binoculars mr-3" aria-hidden="true"></i>View Reservations</button></a>
                 </div>
             </div>
 
-            <div class="card">
-                <h3 class="card-header">Reserve a table</h3>
+            <div class="card my-5">
+                <h3 class="card-header">Reserve Table</h3>
 
-                <form>
-                    <div class="form-group">
-                        <label for="name">Name</label>
-                        <input type="text" class="form-control" id="name">
+                <form class="p-4">
+                    <div class="form-group row">
+                        <label for="name" class="col-sm-3 col-form-label text-right">Name (required)</label>
+                        <div class="col-sm-9">
+                            <input type="text" class="form-control" id="name" required>
+                        </div>
                     </div>
 
-                    <div class="form-group">
-                        <label for="phone">Phone Number</label>
-                        <input type="text" class="form-control" id="phone">
+                    <div class="form-group row">
+                        <label for="partySize" class="col-sm-3 col-form-label text-right">Party size (required)</label>
+                        <div class="col-sm-9">
+                            <select class="form-control" id="partySize">
+                                <option>1</option>
+                                <option selected="selected">2</option>
+                                <option>3</option>
+                                <option>4</option>
+                                <option>5+</option>
+                            </select>
+                        </div>
                     </div>
 
-                    <div class="form-group">
-                        <label for="name">Email</label>
-                        <input type="text" class="form-control" id="email">
+                    <div class="form-group row">
+                        <label for="phone" class="col-sm-3 col-form-label text-right">Phone (required)</label>
+                        <div class="col-sm-9">
+                            <input type="text" class="form-control" id="phone" required>
+                        </div>
                     </div>
 
-                    <button type="submit" class="btn btn-primary btn-lg float-right" id="button_submit">Submit</button>
+                    <div class="form-group row">
+                        <label for="name" class="col-sm-3 col-form-label text-right">Email</label>
+                        <div class="col-sm-9">
+                            <input type="text" class="form-control" id="email">
+                        </div>
+                    </div>
+
+                    <button type="submit" class="btn btn-success btn-lg float-right mt-4" id="button_submit">Submit</button>
                 </form>
             </div>
-            <br>
-    
-            <footer>
-                <a href="/api/view">API Reservation</a> | <a href="/api/waitlist">API Waitlist</a>
+            
+            <footer">
+                <div class="float-left">
+                    Copyright © 2017 by John Absher, Jason Joachim, Isaac Lee, and Joshua Summitt
+                </div>
+                <div class="float-right">
+                    <a href="/api/reservations">API reservations</a> | <a href="/api/waitlist">API waitlist</a>
+                </div>
             </footer>
         </div>
 
         <!-- For Bootstrap 4 -->
-        <script src="https://code.jquery.com/jquery-3.1.1.slim.min.js" integrity="sha384-A7FZj7v+d/sdmMqp/nOQwliLvUsJfDHW+k9Omg/a/EheAdgtzNs3hpfag6Ed950n" crossorigin="anonymous"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/tether/1.4.0/js/tether.min.js" integrity="sha384-DztdAPBWPRXSA/3eYEEUWrWCy7G5KFbe8fFjk5JAIxUYHKkDx6Qin1DkWx51bBrb" crossorigin="anonymous"></script>
-<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/js/bootstrap.min.js" integrity="sha384-vBWWzlZJ8ea9aCX4pEW3rVHjgjt7zpkNpZk+02D9phzyeVkE+jo0ieGizqPLForn" crossorigin="anonymous"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/tether/1.4.0/js/tether.min.js" integrity="sha384-DztdAPBWPRXSA/3eYEEUWrWCy7G5KFbe8fFjk5JAIxUYHKkDx6Qin1DkWx51bBrb" crossorigin="anonymous"></script>
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/js/bootstrap.min.js" integrity="sha384-vBWWzlZJ8ea9aCX4pEW3rVHjgjt7zpkNpZk+02D9phzyeVkE+jo0ieGizqPLForn" crossorigin="anonymous"></script>
 
         <script type="text/javascript">
-            $("#button_home").on("click", function() {
-                $.get("/", function() {});
-            });
-
-            $("#button_view").on("click", function() {
-                $.get("/view", function() {});
-            });
-
             $("#button_submit").click((event) => {
                 event.preventDefault();
 
-                const data = {
-                    "name" : $("#name").val().trim(),
-                    "phone": $("#phone").val().trim(),
-                    "email": $("#email").val().trim()
+                var data = {
+                    "name"     : $("#name").val().trim(),
+                    "partySize": parseInt($("#partySize").val().trim()),
+                    "phone"    : $("#phone").val().trim(),
+                    "email"    : $("#email").val().trim()
                 };
 
-                console.log(data);
+                // Simple input validation
+                var validationPassed = true;
 
-                $.post("/make", data).done(function(data) {
-                    console.log(data);
-                });
+                if (data.name === "") {
+                    $("#name").attr("placeholder", "Please provide your name");
+
+                    validationPassed = false;
+                }
+
+                if (data.phone === "") {
+                    $("#phone").attr("placeholder", "Please provide your number");
+
+                    validationPassed = false;
+                }
+
+                if (validationPassed) {
+                    $.post("/api/new", data).then(function(data) {
+                        window.location = data.redirectUrl;
+                    });
+                }
             });
         </script>
     </body>
