@@ -67,8 +67,27 @@
                     <button type="submit" class="btn btn-success btn-lg float-right mt-4" id="button_submit">Submit</button>
                 </form>
             </div>
+
+            <div class="modal fade" id="modal_response">
+                <div class="modal-dialog" role="document">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h5 class="modal-title">Hi, <span id="user_name"></span>!</h5>
+                            <button type="button" class="close button_close" data-dismiss="modal" aria-label="Close">
+                                <span aria-hidden="true">&times;</span>
+                            </button>
+                        </div>
+                        <div class="modal-body">
+                            <p><span id="return_message"></span></p>
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-secondary button_close" data-dismiss="modal">Close</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
             
-            <footer">
+            <footer>
                 <div class="float-left">
                     Copyright © 2017 by John Absher, Jason Joachim, Isaac Lee, and Joshua Summitt
                 </div>
@@ -110,7 +129,11 @@
 
                 if (validationPassed) {
                     $.post("/api/new", data).then(function(data) {
-                        window.location = data.redirectUrl;
+                        $("#modal_response").modal();
+
+                        $("#modal_response").on("hidden.bs.modal", function(event) {
+                            window.location = data.redirectUrl;
+                        });
                     });
                 }
             });
