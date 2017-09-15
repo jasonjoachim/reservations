@@ -15,52 +15,60 @@
     </head>
     <body>
         <div class="container">
-            <div class="jumbotron">
-                <h1 class="text-center">Restaurant Reservation</h1>
+            <div class="jumbotron py-5">
+                <h1 class="display-4 text-center">Restaurant Reservation</h1>
                 <hr>
-                <h3 class="text-center">Make a Reservation</h3>
-                <br>
-                <div class="text-center">
-                    <a href="/"><button type="button" class="btn btn-primary btn-lg" id="button_home"><i class="fa fa-home" aria-hidden="true"></i> Home</button></a>
-                    <a href="/view"><button type="button" class="btn btn-warning btn-lg" id="button_view"><i class="fa fa-binoculars" aria-hidden="true"></i> View Reservations</button></a>
+                <h2 class="text-center">Make a Reservation</h2>
+                
+                <div class="text-center mt-5">
+                    <a href="/"><button type="button" class="btn btn-primary btn-lg mx-1" id="button_home"><i class="fa fa-home mr-3" aria-hidden="true"></i>Home</button></a>
+                    <a href="/view"><button type="button" class="btn btn-warning btn-lg mx-1" id="button_view"><i class="fa fa-binoculars mr-3" aria-hidden="true"></i>View Reservations</button></a>
                 </div>
             </div>
 
-            <div class="card">
-                <h3 class="card-header">Reserve a table</h3>
-                <form>
-                    <div class="form-group">
-                        <label for="name">Name (required)</label>
-                        <input type="text" class="form-control" id="name" required>
+            <div class="card my-5">
+                <h3 class="card-header">Reserve Table</h3>
+
+                <form class="p-4">
+                    <div class="form-group row">
+                        <label for="name" class="col-sm-3 col-form-label text-right">Name (required)</label>
+                        <div class="col-sm-9">
+                            <input type="text" class="form-control" id="name" required>
+                        </div>
                     </div>
 
-                    <div class="form-group">
-                        <label for="partySize">Party size (required)</label>
-                        <select class="form-control" id="partySize">
-                            <option>1</option>
-                            <option selected="selected">2</option>
-                            <option>3</option>
-                            <option>4</option>
-                            <option>5+</option>
-                        </select>
+                    <div class="form-group row">
+                        <label for="partySize" class="col-sm-3 col-form-label text-right">Party size (required)</label>
+                        <div class="col-sm-9">
+                            <select class="form-control" id="partySize">
+                                <option>1</option>
+                                <option selected="selected">2</option>
+                                <option>3</option>
+                                <option>4</option>
+                                <option>5+</option>
+                            </select>
+                        </div>
                     </div>
 
-                    <div class="form-group">
-                        <label for="phone">Phone (required)</label>
-                        <input type="text" class="form-control" id="phone" required>
+                    <div class="form-group row">
+                        <label for="phone" class="col-sm-3 col-form-label text-right">Phone (required)</label>
+                        <div class="col-sm-9">
+                            <input type="text" class="form-control" id="phone" required>
+                        </div>
                     </div>
 
-                    <div class="form-group">
-                        <label for="name">Email</label>
-                        <input type="text" class="form-control" id="email">
+                    <div class="form-group row">
+                        <label for="name" class="col-sm-3 col-form-label text-right">Email</label>
+                        <div class="col-sm-9">
+                            <input type="text" class="form-control" id="email">
+                        </div>
                     </div>
 
-                    <button type="submit" class="btn btn-primary btn-lg float-right" id="button_submit">Submit</button>
+                    <button type="submit" class="btn btn-success btn-lg float-right mt-4" id="button_submit">Submit</button>
                 </form>
             </div>
-            <br>
             
-            <footer>
+            <footer">
                 <div class="float-left">
                     Copyright © 2017 by John Absher, Jason Joachim, Isaac Lee, and Joshua Summitt
                 </div>

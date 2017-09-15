@@ -15,50 +15,58 @@
     </head>
     <body>
         <div class="container">
-            <div class="jumbotron">
-                <h1 class="text-center">Restaurant Reservation</h1>
+            <div class="jumbotron py-5">
+                <h1 class="display-4 text-center">Restaurant Reservation</h1>
                 <hr>
-                <h3 class="text-center">View Reservations and Waitlist</h3>
-                <br>
-                <div class="text-center">
-                    <a href="/"><button type="button" class="btn btn-primary btn-lg" id="button_home"><i class="fa fa-home" aria-hidden="true"></i> Home</button></a>
-                    <a href="/make"><button type="button" class="btn btn-success btn-lg" id="button_make"><i class="fa fa-cutlery" aria-hidden="true"></i> Make a Reservation</button></a>
+                <h2 class="text-center">View Reservations</h2>
+                
+                <div class="text-center mt-5">
+                    <a href="/"><button type="button" class="btn btn-primary btn-lg mx-1" id="button_home"><i class="fa fa-home mr-3" aria-hidden="true"></i>Home</button></a>
+                    <a href="/make"><button type="button" class="btn btn-success btn-lg mx-1" id="button_make"><i class="fa fa-cutlery mr-3" aria-hidden="true"></i>Make a Reservation</button></a>
                 </div>
             </div>
 
-            <div class="card">
+            <div class="card my-5">
                 <h3 class="card-header">Reservations</h3>
-                <table class="table table-striped" id="reservations">
-                    <thead>
-                        <tr>
-                            <th>#</th>
-                            <th>Name</th>
-                            <th>Party Size</th>
-                            <th>Phone</th>
-                            <th>Email</th>
-                        </tr>
-                    </thead>
-                    <tbody></tbody>
-                </table>
-            </div>
-            <br>
+                
+                <div class="p-4">
+                    <p class="mb-4">Directions: Click on a row to remove the party.</p>
 
-            <div class="card">
-                <h3 class="card-header">Waitlist</h3>
-                <table class="table table-striped" id="waitlist">
-                    <thead>
-                        <tr>
-                            <th>#</th>
-                            <th>Name</th>
-                            <th>Party Size</th>
-                            <th>Phone</th>
-                            <th>Email</th>
-                        </tr>
-                    </thead>
-                    <tbody></tbody>
-                </table>
+                    <table class="table table-hover" id="reservations">
+                        <thead>
+                            <tr>
+                                <th>#</th>
+                                <th>Name</th>
+                                <th>Party Size</th>
+                                <th>Phone</th>
+                                <th>Email</th>
+                            </tr>
+                        </thead>
+                        <tbody></tbody>
+                    </table>
+                </div>
             </div>
-            <br>
+
+            <div class="card my-5">
+                <h3 class="card-header">Waitlist</h3>
+                
+                <div class="p-4">
+                    <p class="mb-4">Directions: Click on a row to remove the party.</p>
+
+                    <table class="table table-hover" id="waitlist">
+                        <thead>
+                            <tr>
+                                <th>#</th>
+                                <th>Name</th>
+                                <th>Party Size</th>
+                                <th>Phone</th>
+                                <th>Email</th>
+                            </tr>
+                        </thead>
+                        <tbody></tbody>
+                    </table>
+                </div>
+            </div>
             
             <footer>
                 <div class="float-left">
