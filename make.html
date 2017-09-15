@@ -73,7 +73,7 @@
                     <div class="modal-content">
                         <div class="modal-header">
                             <h5 class="modal-title">Hi, <span id="user_name"></span>!</h5>
-                            <button type="button" class="close button_close" data-dismiss="modal" aria-label="Close">
+                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                                 <span aria-hidden="true">&times;</span>
                             </button>
                         </div>
@@ -81,7 +81,7 @@
                             <p><span id="return_message"></span></p>
                         </div>
                         <div class="modal-footer">
-                            <button type="button" class="btn btn-secondary button_close" data-dismiss="modal">Close</button>
+                            <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
                         </div>
                     </div>
                 </div>
@@ -129,6 +129,9 @@
 
                 if (validationPassed) {
                     $.post("/api/new", data).then(function(data) {
+                        $("#user_name").text(data.name);
+                        $("#return_message").text((data.openTable) ? "Your reservation was a success!" : "Sorry, you are on the waitlist. We'll get back to you soon!");
+
                         $("#modal_response").modal();
 
                         $("#modal_response").on("hidden.bs.modal", function(event) {
